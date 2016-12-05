@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 URL_TALK = 'https://www.lds.org/general-conference/{year}/{month}/{slug}?lang=eng'
 
-2016_04_SLUGS = [
+SLUGS_2016_10 = [
     'emissaries-to-the-church',
     'learn-from-alma-and-amulek',
     'that-he-may-become-strong-also',
@@ -45,7 +45,7 @@ def cook_soup(response):
 
 def main():
     # url = input('Enter url: ')
-    for slug in 2016_04_SLUGS:
+    for slug in SLUGS_2016_10:
         url = URL_TALK.format(year='2016', month='10', slug=slug)
         response = make_request(url)
         cooked_soup = cook_soup(response)
