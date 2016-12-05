@@ -22,6 +22,8 @@ SELECTOR_AUTHOR = 'article-author__name'
 SELECTOR_CONTENT = 'article-content'
 SELECTOR_NOTES = 'notes'
 
+TALK_TEMPLATE = '{author} <br />{title}\n{content}\n{notes}'
+
 def make_request(url):
     try:
         r = requests.get(url)
@@ -49,6 +51,10 @@ def main():
         url = URL_TALK.format(year='2016', month='10', slug=slug)
         response = make_request(url)
         cooked_soup = cook_soup(response)
+        filename = '{}.text'.format(slug)
+        data = TALK_TEMPLATE.format(author=cooked_soup.get('author'), title=cooked_soup.get('title'), content=cooked_soup.get('content'), notes=cooked_soup.get('notes'))
+        with open(filename, 'w', encoding='utf-8') as fout:
+            fout.write(data)
     
         
 if __name__ == '__main__':
