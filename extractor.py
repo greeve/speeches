@@ -30,7 +30,7 @@ def make_request(url):
     except Exception as e:
         raise(e)
     return r
-    
+
 def cook_soup(response):
     soup = BeautifulSoup(response.content, 'html.parser')
     title = soup.find_all('h1', SELECTOR_TITLE)[0]
@@ -55,7 +55,7 @@ def main():
         data = TALK_TEMPLATE.format(author=cooked_soup.get('author'), title=cooked_soup.get('title'), content=cooked_soup.get('content'), notes=cooked_soup.get('notes'))
         with open(filename, 'w', encoding='utf-8') as fout:
             fout.write(data)
-    
-        
+
+
 if __name__ == '__main__':
     main()
