@@ -10,5 +10,5 @@ directory=$1
 
 for f in $directory/*.text
 	do
-		python -m markdown -o 'html5' -x markdown.extensions.footnotes "$f" > "${f%.text}.html"
+		python -m markdown -o 'xhtml' -x markdown.extensions.footnotes "$f" > "${f%.text}.xhtml"
 	done
