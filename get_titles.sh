@@ -10,5 +10,5 @@ directory=$1
 
 for f in $directory/*.text
 	do
-        head -n 1 $f
+        echo $f && head -n 1 $f
 	done
