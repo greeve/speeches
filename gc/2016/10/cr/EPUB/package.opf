@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<package xmlns="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/" version="3.0" xml:lang="en"
+    unique-identifier="bookid">
+    <metadata>
+        <dc:identifier id="bookid">urn:uuid:7f7c6a2a-e701-41ee-a38c-7f52ce27e901</dc:identifier>
+        <dc:title id="pub-title">October 2016 Conference Report</dc:title>
+        <dc:language id="pub-language">en</dc:language>
+        <dc:date>2017-03-06</dc:date>
+        <meta property="dcterms:modified">2017-03-06T15:30:00Z</meta>
+        <dc:creator id="pub-creator12">Greg Reeve</dc:creator>
+        <dc:contributor>The Church of Jesus Christ of Latter-day Saints</dc:contributor>
+        <dc:publisher>The Church of Jesus Christ of Latter-day Saints</dc:publisher>
+        <dc:rights>Copyright © 2016 The Church of Jesus Christ of Latter-day Saints</dc:rights>
+    </metadata>
+   <manifest>
+      <item href="xhtml/title.xhtml" id="title" media-type="application/xhtml+xml"/>
+      <item href="xhtml/nav.xhtml" id="nav" media-type="application/xhtml+xml" properties="nav"/>
+      <item href="xhtml/eng.xhtml" id="eng" media-type="application/xhtml+xml" />
+      <item href="xhtml/eng/gc_2016_04_sat_am_1_eyring.xhtml" id="sat-am-eyring" media-type="application/xhtml+xml"/>
+      <item href="xhtml/eng/gc_2016_04_sat_am_2_stevenson.xhtml" id="sat-am-stevenson" media-type="application/xhtml+xml"/>
+      <item href="xhtml/eng/gc_2016_04_sat_am_3_renlund.xhtml" id="eng-sat-am-renlund" media-type="application/xhtml+xml"/>
+      <item href="xhtml/eng/gc_2016_04_sat_pm_1_rasband.xhtml" id="eng-sat-pm-rasband" media-type="application/xhtml+xml"/>
+      <item href="xhtml/eng/gc_2016_04_sat_pm_2_andersen.xhtml" id="eng-sat-pm-andersen" media-type="application/xhtml+xml"/>
+      <item href="xhtml/eng/gc_2016_04_sat_pm_3_bednar.xhtml" id="eng-sat-pm-bednar" media-type="application/xhtml+xml"/>
+      <item href="xhtml/eng/gc_2016_04_sat_pm_4_ballard.xhtml" id="eng-sat-pm-ballard" media-type="application/xhtml+xml"/>
+      <item href="xhtml/eng/gc_2016_04_sat_ps_1_nelson.xhtml" id="eng-sat-ps-nelson" media-type="application/xhtml+xml"/>
+      <item href="xhtml/eng/gc_2016_04_sat_ps_2_uchtdorf.xhtml" id="eng-sat-ps-uchtdorf" media-type="application/xhtml+xml"/>
+      <item href="xhtml/eng/gc_2016_04_sat_ps_3_eyring.xhtml" id="eng-sat-ps-eyring" media-type="application/xhtml+xml"/>
+      <item href="xhtml/eng/gc_2016_04_sat_ps_4_monson.xhtml" id="eng-sat-ps-monson" media-type="application/xhtml+xml"/>
+      <item href="xhtml/eng/gc_2016_04_sun_am_1_monson.xhtml" id="eng-sun-am-monson" media-type="application/xhtml+xml"/>
+      <item href="xhtml/eng/gc_2016_04_sun_am_2_christofferson.xhtml" id="eng-sun-am-christofferson" media-type="application/xhtml+xml"/>
+      <item href="xhtml/eng/gc_2016_04_sun_am_3_cook.xhtml" id="eng-sun-am-cook" media-type="application/xhtml+xml"/>
+      <item href="xhtml/eng/gc_2016_04_sun_am_4_uchtdorf.xhtml" id="eng-sun-am-uchtdorf" media-type="application/xhtml+xml"/>
+      <item href="xhtml/eng/gc_2016_04_sun_pm_1_hales.xhtml" id="eng-sun-pm-hales" media-type="application/xhtml+xml"/>
+      <item href="xhtml/eng/gc_2016_04_sun_pm_2_oaks.xhtml" id="eng-sun-pm-oaks" media-type="application/xhtml+xml"/>
+      <item href="xhtml/eng/gc_2016_04_sun_pm_3_holland.xhtml" id="eng-sun-pm-holland" media-type="application/xhtml+xml"/>
+      <item href="xhtml/hun.xhtml" id="hun" media-type="application/xhtml+xml" />
+      <item href="xhtml/hun/gc_2016_04_sat_am_1_eyring.xhtml" id="hun-sat-am-eyring" media-type="application/xhtml+xml"/>
+      <item href="xhtml/hun/gc_2016_04_sat_am_2_stevenson.xhtml" id="hun-sat-am-stevenson" media-type="application/xhtml+xml"/>
+      <item href="xhtml/hun/gc_2016_04_sat_am_3_renlund.xhtml" id="hun-sat-am-renlund" media-type="application/xhtml+xml"/>
+      <item href="xhtml/hun/gc_2016_04_sat_pm_1_rasband.xhtml" id="hun-sat-pm-rasband" media-type="application/xhtml+xml"/>
+      <item href="xhtml/hun/gc_2016_04_sat_pm_2_andersen.xhtml" id="hun-sat-pm-andersen" media-type="application/xhtml+xml"/>
+      <item href="xhtml/hun/gc_2016_04_sat_pm_3_bednar.xhtml" id="hun-sat-pm-bednar" media-type="application/xhtml+xml"/>
+      <item href="xhtml/hun/gc_2016_04_sat_pm_4_ballard.xhtml" id="hun-sat-pm-ballard" media-type="application/xhtml+xml"/>
+      <item href="xhtml/hun/gc_2016_04_sat_ps_1_nelson.xhtml" id="hun-sat-ps-nelson" media-type="application/xhtml+xml"/>
+      <item href="xhtml/hun/gc_2016_04_sat_ps_2_uchtdorf.xhtml" id="hun-sat-ps-uchtdorf" media-type="application/xhtml+xml"/>
+      <item href="xhtml/hun/gc_2016_04_sat_ps_3_eyring.xhtml" id="hun-sat-ps-eyring" media-type="application/xhtml+xml"/>
+      <item href="xhtml/hun/gc_2016_04_sat_ps_4_monson.xhtml" id="hun-sat-ps-monson" media-type="application/xhtml+xml"/>
+      <item href="xhtml/hun/gc_2016_04_sun_am_1_monson.xhtml" id="hun-sun-am-monson" media-type="application/xhtml+xml"/>
+      <item href="xhtml/hun/gc_2016_04_sun_am_2_christofferson.xhtml" id="hun-sun-am-christofferson" media-type="application/xhtml+xml"/>
+      <item href="xhtml/hun/gc_2016_04_sun_am_3_cook.xhtml" id="hun-sun-am-cook" media-type="application/xhtml+xml"/>
+      <item href="xhtml/hun/gc_2016_04_sun_am_4_uchtdorf.xhtml" id="hun-sun-am-uchtdorf" media-type="application/xhtml+xml"/>
+      <item href="xhtml/hun/gc_2016_04_sun_pm_1_hales.xhtml" id="hun-sun-pm-hales" media-type="application/xhtml+xml"/>
+      <item href="xhtml/hun/gc_2016_04_sun_pm_2_oaks.xhtml" id="hun-sun-pm-oaks" media-type="application/xhtml+xml"/>
+      <item href="xhtml/hun/gc_2016_04_sun_pm_3_holland.xhtml" id="hun-sun-pm-holland" media-type="application/xhtml+xml"/>
+   </manifest>
+   <spine>
+      <itemref idref="title"/>
+      <itemref idref="nav" linear="no"/>
+      <itemref idref="eng" />
+      <itemref idref="sat-am-eyring" />
+      <itemref idref="sat-am-stevenson" />
+      <itemref idref="eng-sat-am-renlund" />
+      <itemref idref="eng-sat-pm-rasband" />
+      <itemref idref="eng-sat-pm-andersen" />
+      <itemref idref="eng-sat-pm-bednar" />
+      <itemref idref="eng-sat-pm-ballard" />
+      <itemref idref="eng-sat-ps-nelson" />
+      <itemref idref="eng-sat-ps-uchtdorf" />
+      <itemref idref="eng-sat-ps-eyring" />
+      <itemref idref="eng-sat-ps-monson" />
+      <itemref idref="eng-sun-am-monson" />
+      <itemref idref="eng-sun-am-christofferson" />
+      <itemref idref="eng-sun-am-cook" />
+      <itemref idref="eng-sun-am-uchtdorf" />
+      <itemref idref="eng-sun-pm-hales" />
+      <itemref idref="eng-sun-pm-oaks" />
+      <itemref idref="eng-sun-pm-holland" />
+      <itemref idref="hun" />
+      <itemref idref="hun-sat-am-eyring" />
+      <itemref idref="hun-sat-am-stevenson" />
+      <itemref idref="hun-sat-am-renlund" />
+      <itemref idref="hun-sat-pm-rasband" />
+      <itemref idref="hun-sat-pm-andersen" />
+      <itemref idref="hun-sat-pm-bednar" />
+      <itemref idref="hun-sat-pm-ballard" />
+      <itemref idref="hun-sat-ps-nelson" />
+      <itemref idref="hun-sat-ps-uchtdorf" />
+      <itemref idref="hun-sat-ps-eyring" />
+      <itemref idref="hun-sat-ps-monson" />
+      <itemref idref="hun-sun-am-monson" />
+      <itemref idref="hun-sun-am-christofferson" />
+      <itemref idref="hun-sun-am-cook" />
+      <itemref idref="hun-sun-am-uchtdorf" />
+      <itemref idref="hun-sun-pm-hales" />
+      <itemref idref="hun-sun-pm-oaks" />
+      <itemref idref="hun-sun-pm-holland" />
+   </spine>
+</package>
