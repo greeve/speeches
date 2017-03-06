@@ -8,4 +8,4 @@ fi
 
 directory=$1
 
-rm $directory/*.html
+rm $directory/*.xhtml
