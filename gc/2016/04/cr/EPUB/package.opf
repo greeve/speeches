@@ -17,8 +17,8 @@
       <item href="xhtml/title.xhtml" id="title" media-type="application/xhtml+xml"/>
       <item href="xhtml/nav.xhtml" id="nav" media-type="application/xhtml+xml" properties="nav"/>
       <item href="xhtml/eng.xhtml" id="eng" media-type="application/xhtml+xml" />
-      <item href="xhtml/eng/gc_2016_04_sat_am_1_eyring.xhtml" id="sat-am-eyring" media-type="application/xhtml+xml"/>
-      <item href="xhtml/eng/gc_2016_04_sat_am_2_stevenson.xhtml" id="sat-am-stevenson" media-type="application/xhtml+xml"/>
+      <item href="xhtml/eng/gc_2016_04_sat_am_1_eyring.xhtml" id="eng-sat-am-eyring" media-type="application/xhtml+xml"/>
+      <item href="xhtml/eng/gc_2016_04_sat_am_2_stevenson.xhtml" id="eng-sat-am-stevenson" media-type="application/xhtml+xml"/>
       <item href="xhtml/eng/gc_2016_04_sat_am_3_renlund.xhtml" id="eng-sat-am-renlund" media-type="application/xhtml+xml"/>
       <item href="xhtml/eng/gc_2016_04_sat_pm_1_rasband.xhtml" id="eng-sat-pm-rasband" media-type="application/xhtml+xml"/>
       <item href="xhtml/eng/gc_2016_04_sat_pm_2_andersen.xhtml" id="eng-sat-pm-andersen" media-type="application/xhtml+xml"/>
@@ -59,8 +59,8 @@
       <itemref idref="title"/>
       <itemref idref="nav" linear="no"/>
       <itemref idref="eng" />
-      <itemref idref="sat-am-eyring" />
-      <itemref idref="sat-am-stevenson" />
+      <itemref idref="eng-sat-am-eyring" />
+      <itemref idref="eng-sat-am-stevenson" />
       <itemref idref="eng-sat-am-renlund" />
       <itemref idref="eng-sat-pm-rasband" />
       <itemref idref="eng-sat-pm-andersen" />
