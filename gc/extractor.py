@@ -9,6 +9,7 @@ __version__ = "0.1.0"
 __license__ = "MIT"
 
 import argparse
+import os
 import requests
 
 from bs4 import BeautifulSoup
@@ -62,13 +63,13 @@ IGNORE_TITLES = [
     'The Sustaining of Church Officers',
 ]
 
-FILEPATH = 'gc_{year}_{month}_{session}_{order}_{name}.text'
+FILEPATH = '{year}/{month}/{lang}/gc_{year}_{month}_{session}_{order}_{name}.text'
 
 
-def get_slugs(args):
+def get_slugs(year, month, lang):
     data = []
     r = requests.get(
-        TOC_URL.format(year=args.year, month=args.month, lang=args.lang),
+        TOC_URL.format(year=year, month=month, lang=lang),
     )
     soup = BeautifulSoup(r.content, 'html.parser')
     sections = soup.find_all('div', class_='section')
@@ -96,23 +97,25 @@ def get_slugs(args):
     return data
 
 
-def write_talks(slugs, args):
+def write_talks(slugs, year, month, lang):
     for slug_infos in slugs:
         session, order, last_name, slug = slug_infos
         filename = FILEPATH.format(
-            year=args.year,
-            month=args.month,
+            year=year,
+            month=month,
             session=session,
             order=order,
             name=last_name,
+            lang=lang,
         )
+        ensure_path_exists(filename)
         data = []
 
         r = requests.get(TALK_URL.format(
-            year=args.year,
-            month=args.month,
+            year=year,
+            month=month,
             slug=slug,
-            lang=args.lang,
+            lang=lang,
         ))
         soup = BeautifulSoup(r.content, 'html.parser')
         section = soup.find_all(
@@ -124,7 +127,7 @@ def write_talks(slugs, args):
         title = section.find_all('h1', class_='title')[0].text
 
         # author
-        if args.lang == 'eng':
+        if lang == 'eng':
             author = section.find_all('a', class_='article-author__name')[0].text.replace('By ', '')  # noqa
         else:
             author = section.find_all('div', class_='article-author')[0].text.split('\n')[1:][0].strip()  # noqa
@@ -158,8 +161,14 @@ def write_talks(slugs, args):
             footnotes = '\n'.join([n.text for n in notes])
             data.append(footnotes)
 
-        with open(filename, 'w') as fout:
+        with open(filename, 'w', encoding='utf-8') as fout:
             fout.write('\n\n'.join(data))
+
+
+def ensure_path_exists(path):
+    dirs = os.path.dirname(path)
+    if not os.path.exists(dirs):
+        os.makedirs(dirs)
 
 
 def main(args):
