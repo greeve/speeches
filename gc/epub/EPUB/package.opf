@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<package xmlns="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dcterms="http://purl.org/dc/terms/" version="3.0" xml:lang="en"
+    unique-identifier="bookid">
+    <metadata>
+        <dc:identifier id="bookid">urn:uuid:{{ uuid }}</dc:identifier>
+        <dc:title id="pub-title">{{ month }} {{ year }} Conference Report</dc:title>
+        <dc:language id="pub-language">en</dc:language>
+        <dc:date>{{ date }}</dc:date> <!-- yyyy-mm-dd -->
+        <meta property="dcterms:modified">{{ date }}T15:30:00Z</meta>
+        <dc:creator id="pub-creator12">Greg Reeve</dc:creator>
+        <dc:contributor>The Church of Jesus Christ of Latter-day Saints</dc:contributor>
+        <dc:publisher>The Church of Jesus Christ of Latter-day Saints</dc:publisher>
+        <dc:rights>Copyright © {{ year }} The Church of Jesus Christ of Latter-day Saints</dc:rights>
+    </metadata>
+   <manifest>
+      <item href="xhtml/title.xhtml" id="title" media-type="application/xhtml+xml"/>
+      <item href="xhtml/nav.xhtml" id="nav" media-type="application/xhtml+xml" properties="nav"/>
+      <item href="xhtml/eng.xhtml" id="eng" media-type="application/xhtml+xml" />
+      <!--
+      <item href="xhtml/eng/gc_2016_04_sat_am_1_eyring.xhtml" id="eng-sat-am-eyring" media-type="application/xhtml+xml"/> 
+      -->
+      {{ items_eng }}
+      <item href="xhtml/hun.xhtml" id="hun" media-type="application/xhtml+xml" />
+      <!--
+      <item href="xhtml/hun/gc_2016_04_sat_am_1_eyring.xhtml" id="hun-sat-am-eyring" media-type="application/xhtml+xml"/>
+      -->
+      {{ items_hun }}
+   </manifest>
+   <spine>
+      <itemref idref="title"/>
+      <itemref idref="nav" linear="no"/>
+      <itemref idref="eng" />
+      <!-- 
+      <itemref idref="eng-sat-am-eyring" />
+      -->
+      {{ refs_eng }}
+      <itemref idref="hun" />
+      <!--
+      <itemref idref="hun-sat-am-eyring" />
+      -->
+      {{ refs_hun }}
+   </spine>
+</package>
