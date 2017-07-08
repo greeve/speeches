@@ -63,7 +63,7 @@ IGNORE_TITLES = [
     'The Sustaining of Church Officers',
 ]
 
-FILEPATH = '{year}/{month}/{lang}/gc_{year}_{month}_{session}_{order}_{name}.text'
+FILEPATH = '{year}/{month}/{lang}/gc_{year}_{month}_{session}_{order}_{name}.text'  # noqa
 
 
 def get_slugs(year, month, lang):
@@ -98,6 +98,7 @@ def get_slugs(year, month, lang):
 
 
 def write_talks(slugs, year, month, lang):
+    paths = []
     for slug_infos in slugs:
         session, order, last_name, slug = slug_infos
         filename = FILEPATH.format(
@@ -108,6 +109,7 @@ def write_talks(slugs, year, month, lang):
             name=last_name,
             lang=lang,
         )
+        paths.append(filename)
         ensure_path_exists(filename)
         data = []
 
@@ -164,6 +166,8 @@ def write_talks(slugs, year, month, lang):
         with open(filename, 'w', encoding='utf-8') as fout:
             fout.write('\n\n'.join(data))
 
+    return paths
+
 
 def ensure_path_exists(path):
     dirs = os.path.dirname(path)
@@ -178,7 +182,8 @@ def main(args):
     logger.info("hello world")
     logger.info(args)
     slugs = get_slugs(args)
-    write_talks(slugs, args)
+    paths = write_talks(slugs, args)
+    logger.info(paths)
 
 
 if __name__ == "__main__":

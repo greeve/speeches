@@ -24,7 +24,8 @@ def main(args):
     logger.info(args)
     for lang in args.languages:
         slugs = extractor.get_slugs(args.year, args.month, lang)
-        extractor.write_talks(slugs, args.year, args.month, lang)
+        paths = extractor.write_talks(slugs, args.year, args.month, lang)
+        logger.info(paths)
 
 
 if __name__ == "__main__":
