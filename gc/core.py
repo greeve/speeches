@@ -10,6 +10,7 @@ __license__ = "MIT"
 
 import argparse
 import extractor
+import ebook
 
 from logger import setup_logger
 
@@ -22,11 +23,13 @@ def main(args):
     """
     logger.info("hello world")
     logger.info(args)
+    talks = []
     for lang in args.languages:
         slugs = extractor.get_slugs(args.year, args.month, lang)
         paths = extractor.write_talks(slugs, args.year, args.month, lang)
-        logger.info(paths)
-
+        talks.extend(paths)
+    ebook.create(args.year, args.month, args.languages, talks)
+    
 
 if __name__ == "__main__":
     """
