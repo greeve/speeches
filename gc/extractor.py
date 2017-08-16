@@ -109,7 +109,6 @@ def write_talks(slugs, year, month, lang):
             name=last_name,
             lang=lang,
         )
-        paths.append(filename)
         ensure_path_exists(filename)
         data = []
 
@@ -135,6 +134,7 @@ def write_talks(slugs, year, month, lang):
             author = section.find_all('div', class_='article-author')[0].text.split('\n')[1:][0].strip()  # noqa
 
         data.append('# {} <br />{}'.format(author, title))
+        paths.append((filename, author, title))
 
         # address content
         address = section.find_all('div', class_='body-block')[0]
