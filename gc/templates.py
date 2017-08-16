@@ -46,20 +46,16 @@ unique-identifier="bookid">
 </package>"""
 
 PACKAGE_ITEM_LANG_PART = """
-    <item href="xhtml/{lang}.xhtml" id="{lang}" media-type="application/xhtml+xml" />
-"""
+    <item href="xhtml/{lang}.xhtml" id="{lang}" media-type="application/xhtml+xml" />"""
 
 PACKAGE_ITEM_LANG = """
-    <item href="xhtml/{lang}/{filename}" id="{fileid}" media-type="application/xhtml+xml"/>
-"""
+    <item href="xhtml/{lang}/{filename}" id="{fileid}" media-type="application/xhtml+xml"/>"""
 
 PACKAGE_REF_LANG_PART = """
-    <itemref idref="{lang}" />
-"""
+    <itemref idref="{lang}" />"""
 
 PACKAGE_REF_LANG = """
-    <itemref idref="{fileid}" />
-"""
+    <itemref idref="{fileid}" />"""
 
 LANG_PART = """<?xml version="1.0" encoding="utf-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
@@ -110,12 +106,10 @@ NAV_LANG = """
                     <ol>
                         {talks}
                     </ol>
-                </li>
-"""
+                </li>"""
 
 NAV_TALK = """
-                        <li><a href="{lang}/{filename}">{author} - {title}</a></li>
-"""
+                        <li><a href="{lang}/{filename}">{author} - {title}</a></li>"""
 
 TALK = """<?xml version="1.0" encoding="utf-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
