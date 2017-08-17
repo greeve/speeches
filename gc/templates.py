@@ -18,7 +18,7 @@ CONTAINER = """<?xml version="1.0" encoding="utf-8" standalone="no"?>
     </rootfiles>
 </container>"""
 
-PACKAGE = """<?xm version="1.0" encoding="utf-8" standalone="no"?>
+PACKAGE = """<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <package xmlns="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/"
 xmlns:dcterms="http://purl.org/dc/terms/" version="3.0" xml:lang="en"
 unique-identifier="bookid">
@@ -84,8 +84,7 @@ TITLE = """<?xml version="1.0" encoding="utf-8"?>
     </body>
 </html>"""
 
-NAV = """
-<?xml version="1.0" encoding="utf-8"?>
+NAV = """<?xml version="1.0" encoding="utf-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
     <head>
         <meta charset="utf-8" />
@@ -101,15 +100,13 @@ NAV = """
     </body>
 </html>"""
 
-NAV_LANG = """
-                <li><a href="{lang}.xhtml">{language} Conference Addresses</a>
+NAV_LANG = """                <li><a href="{lang}.xhtml">{language} Conference Addresses</a>
                     <ol>
                         {talks}
                     </ol>
                 </li>"""
 
-NAV_TALK = """
-                        <li><a href="{lang}/{filename}">{author} - {title}</a></li>"""
+NAV_TALK = """                        <li><a href="{lang}/{filename}">{author} - {title}</a></li>"""
 
 TALK = """<?xml version="1.0" encoding="utf-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
