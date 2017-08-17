@@ -12,6 +12,7 @@ import markdown
 import os
 import templates
 import uuid
+import zipfile
 
 from datetime import date
 from logger import setup_logger
@@ -30,6 +31,7 @@ TITLE_PATH = CR_PATH + 'EPUB/xhtml/title.xhtml'
 LANG_PATH = CR_PATH + 'EPUB/xhtml/{lang}.xhtml'
 LANG_DIR = CR_PATH + 'EPUB/xhtml/{lang}/'
 TALK_PATH = LANG_DIR + '{filename}'
+ZIP_PATH = 'cr-{year}-{month}.epub'
 
 LANGS_FULL = {
     'eng': 'English',
@@ -42,7 +44,7 @@ MONTHS = {
 }
 
 
-def create(year, month, languages, talks):
+def generate_files(year, month, languages, talks):
     ensure_path_exists(CR_PATH.format(year=year, month=month))
     
     # create the mimetype file
@@ -87,7 +89,7 @@ def create(year, month, languages, talks):
     
     package = templates.PACKAGE.format(
         year=year, 
-        month=month, 
+        month=MONTHS[month], 
         uuid=ebook_uuid, 
         date=today, 
         items=''.join(items),
@@ -166,6 +168,23 @@ def create(year, month, languages, talks):
             )
             with open(new_file_path, 'w', encoding='utf8') as fout:
                 fout.write(new_file_text)
+
+
+def create(year, month):
+    filename = ZIP_PATH.format(year=year, month=month)
+    cr_path = CR_PATH.format(year=year, month=month)
+    with zipfile.ZipFile(filename, 'w') as zout:
+        for path, subdirs, files in os.walk(cr_path):
+            for f in files:
+                f_path = os.path.join(path, f)
+                if f == 'mimetype':
+                    compress_type = zipfile.ZIP_STORED
+                else:
+                    compress_type = zipfile.ZIP_DEFLATED
+                zout.write(
+                    f_path, os.path.relpath(f_path, start=cr_path),
+                    compress_type=compress_type
+                )
 
 
 def ensure_path_exists(path):
