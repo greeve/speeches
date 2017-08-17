@@ -21,7 +21,6 @@ def main(args):
     """
     Main entry point of the app
     """
-    logger.info("hello world")
     logger.info(args)
     talks = []
     for lang in args.languages:
