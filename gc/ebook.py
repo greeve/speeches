@@ -29,7 +29,7 @@ NAV_PATH = CR_PATH + 'EPUB/xhtml/nav.xhtml'
 TITLE_PATH = CR_PATH + 'EPUB/xhtml/title.xhtml'
 LANG_PATH = CR_PATH + 'EPUB/xhtml/{lang}.xhtml'
 LANG_DIR = CR_PATH + 'EPUB/xhtml/{lang}/'
-TALK_PATH = LANG_DIR + 'talk.xhtml'
+TALK_PATH = LANG_DIR + '{filename}'
 
 LANGS_FULL = {
     'eng': 'English',
@@ -65,13 +65,24 @@ def create(year, month, languages, talks):
     for lang in languages:
         lang_part = templates.PACKAGE_ITEM_LANG_PART.format(lang=lang)
         items.append(lang_part)
-        for talk in talks:
-            talk_path, _, _ = talk
+        refs.append(templates.PACKAGE_REF_LANG_PART.format(lang=lang))
+        for talk in [t for t in talks if t[3] == lang]:
+            talk_path, _, _, _ = talk
+            filepath = talk_path.split('/')[-1]
+            filename, _ = os.path.splitext(filepath)
             talk_parts = talk_path.split('_')
-            fileid = '{}-{}-{}-{}'.format(lang, talk_parts[3], talk_parts[4], talk_parts[6])
-            item = templates.PACKAGE_ITEM_LANG.format(lang=lang, filename=talk, fileid=fileid)
+            fileid = '{}-{}-{}-{}'.format(
+                lang, 
+                talk_parts[3], 
+                talk_parts[4], 
+                talk_parts[6],
+            )
+            item = templates.PACKAGE_ITEM_LANG.format(
+                lang=lang, 
+                filename=filename + '.xhtml', 
+                fileid=fileid,
+            )
             items.append(item)
-            refs.append(templates.PACKAGE_REF_LANG_PART.format(lang=lang))
             refs.append(templates.PACKAGE_REF_LANG.format(fileid=fileid))
     
     package = templates.PACKAGE.format(
@@ -93,12 +104,13 @@ def create(year, month, languages, talks):
     nav_langs = []
     for lang in languages:
         nav_talk_items = []
-        for talk in talks:
-            talk_path, author, title = talk
-            filename = talk_path.split('/')[-1]
+        for talk in [t for t in talks if t[3] == lang]:
+            talk_path, author, title, _ = talk
+            filepath = talk_path.split('/')[-1]
+            filename, _ = os.path.splitext(filepath)
             nav_talk_item = templates.NAV_TALK.format(
                 lang=lang, 
-                filename=filename, 
+                filename=filename + '.xhtml', 
                 author=author, 
                 title=title,
             )
@@ -121,7 +133,11 @@ def create(year, month, languages, talks):
     
     # create language part files
     for lang in languages:
-        lang_part_path = LANG_PATH.format(year=year, month=month, lang=lang)
+        lang_part_path = LANG_PATH.format(
+            year=year, 
+            month=month, 
+            lang=lang,
+        )
         ensure_path_exists(lang_part_path)
         lang_directory_path = LANG_DIR.format(year=year, month=month, lang=lang)
         ensure_path_exists(lang_directory_path)
@@ -130,12 +146,37 @@ def create(year, month, languages, talks):
             fout.write(templates.LANG_PART.format(language=lang_name_full))
     
     # create talks
+    for lang in languages:
+        nav_talk_items = []
+        for talk in [t for t in talks if t[3] == lang]:
+            talk_path, author, title, _ = talk
+            filepath = talk_path.split('/')[-1]
+            filename, _ = os.path.splitext(filepath)
+            source_text = get_file_text(talk_path)
+            body = markdown.markdown(
+                source_text, output_format='xhtml', 
+                extensions=['markdown.extensions.footnotes'],
+            )
+            new_file_text = templates.TALK.format(title=title, body=body)
+            new_file_path = TALK_PATH.format(
+                year=year, 
+                month=month, 
+                lang=lang, 
+                filename=filename + '.xhtml',
+            )
+            with open(new_file_path, 'w', encoding='utf8') as fout:
+                fout.write(new_file_text)
 
 
 def ensure_path_exists(path):
     dirs = os.path.dirname(path)
     if not os.path.exists(dirs):
         os.makedirs(dirs)
+
+
+def get_file_text(filepath):
+    with open(filepath, 'r', encoding='utf8') as fin:
+        return fin.read()
 
 
 def main():
