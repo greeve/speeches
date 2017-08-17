@@ -134,7 +134,7 @@ def write_talks(slugs, year, month, lang):
             author = section.find_all('div', class_='article-author')[0].text.split('\n')[1:][0].strip()  # noqa
 
         data.append('# {} <br />{}'.format(author, title))
-        paths.append((filename, author, title))
+        paths.append((filename, author, title, lang))
 
         # address content
         address = section.find_all('div', class_='body-block')[0]
