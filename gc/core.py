@@ -27,7 +27,8 @@ def main(args):
         slugs = extractor.get_slugs(args.year, args.month, lang)
         paths = extractor.write_talks(slugs, args.year, args.month, lang)
         talks.extend(paths)
-    ebook.create(args.year, args.month, args.languages, talks)
+    ebook.generate_files(args.year, args.month, args.languages, talks)
+    ebook.create(args.year, args.month)
     
 
 if __name__ == "__main__":
