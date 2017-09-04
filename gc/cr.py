@@ -86,9 +86,9 @@ class Conference:
     def download_talks(self):
         url = self.GC_URL.format(year=self.year, month=self.month)
         params = {'lang': self.lang}
-        r = requests(url, params=params)
+        r = requests.get(url, params=params)
         talks = self.parse_response(r)
-        return
+        return talks
     
     def parse_response(self, response):
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -101,14 +101,14 @@ class Conference:
                 'span',
                 class_='section__header__title',
             )[0].text
-            if section_title not in IGNORE_SECTIONS:
+            if section_title not in self.IGNORE_SECTIONS:
                 speakers = section.find_all('div', class_='lumen-tile__content')
                 for index, speaker in enumerate(speakers):
-                    if speaker.text in APOSTLES:
+                    if speaker.text in self.APOSTLES:
                         title = (
                             speaker.previous_sibling.previous_sibling.text.strip()
                         )
-                        if title not in IGNORE_TITLES:
+                        if title not in self.IGNORE_TITLES:
                             href = speaker.parent.parent['href']
                             slug = href.split('?')[:1][0].split('/')[-1]
                             author = speaker.text
@@ -124,36 +124,121 @@ class Conference:
                                 last_name=last_name,
                                 lang=self.lang,
                             )
-                                                
-                            yield Talk.from_url(
-                                author=author,
+
+                            url = self.TALK_URL.format(
+                                year=self.year,
+                                month=self.month,
                                 slug=slug,
-                                session=,
-                                order=,
+                                lang=self.lang,
+                            )
+                                                
+                            yield Talk.from_url( 
+                                url,
+                                self.lang,
+                                author=author,
+                                title=title, 
+                                slug=slug,
+                                session=session,
+                                order=order,
+                                filepath=filepath,
                             )
 
 
 class Talk:
+
+    SESSIONS = {
+        'Saturday Morning Session': 'sat-am',
+        'Saturday Afternoon Session': 'sat-pm',
+        'General Priesthood Session': 'sat-ps',
+        'Sunday Morning Session': 'sun-am',
+        'Sunday Afternoon Session': 'sun-pm',
+        'Szombat délelőtti ülés': 'sat-am',
+        'Szombat délutáni ülés': 'sat-pm',
+        'Általános papsági ülés': 'sat-ps',
+        'Vasárnap délelőtti ülés': 'sun-am',
+        'Vasárnap délutáni ülés': 'sun-pm',
+    }
     
-    def __init__(self, author, title, slug, session, order, address, filepath):
+    def __init__(self, author, title, slug, session, order, filepath, full_text):
         self.author = author
         self.title = title
         self.slug = slug
         self.session = session
         self.session_abrv = self.SESSIONS[session]
         self.order = order
-        self.address = address
         self.filepath = filepath
+        self.full_text = full_text
         
     @classmethod
-    def from_url(cls, url, *kwargs):
+    def from_url(cls, url, lang,  **kwargs):
         author = kwargs.get('author')
+        title = kwargs.get('title')
         slug = kwargs.get('slug')
         session = kwargs.get('session')
         order = kwargs.get('order')
-        
-        c = cls()
-        return c
+        filepath = kwargs.get('filepath')
+
+        talk = cls(
+            author,
+            title, 
+            slug,
+            session,
+            order,
+            filepath,
+            None,
+        )
+
+        talk.full_text = talk.download_to_markdown(url, lang)
+        return talk
+
+    def download_to_markdown(self, url, lang):
+        data = []
+        r = requests.get(url)
+        soup = BeautifulSoup(r.content, 'html.parser')
+        section = soup.find_all(
+            'section',
+            class_='article-page lumen-template-read',
+        )[0]
+
+        # title
+        title = section.find_all('h1', class_='title')[0].text
+
+        # author
+        if lang == 'eng':
+            author = section.find_all('a', class_='article-author__name')[0].text.replace('By ', '')  # noqa
+        else:
+            author = section.find_all('div', class_='article-author')[0].text.split('\n')[1:][0].strip()  # noqa
+
+        data.append('# {} <br />{}'.format(author, title))
+
+        # address content
+        content = section.find_all('div', class_='body-block')[0]
+
+        # speech paragraphs
+        paragraphs = content.find_all('p')
+
+        # modify footnotes in each paragraph
+        for p in paragraphs:
+            footnotes = p.find_all('sup', class_='marker')
+            if footnotes:
+                for f in footnotes:
+                    f.string.replace_with('[^{}]'.format(f.string))
+
+        speech = '\n\n'.join([p.text for p in content.find_all('p')])
+        data.append(speech)
+
+        # references
+        references = section.find(id='toggledReferences')
+
+        if references:
+            notes = references.find_all('li')
+            for n in notes:
+                note = n.find_all('p')[0]
+                n.string = '[^{}]: {}'.format(n['data-marker'].replace('.', ''), note.text)  # noqa
+            footnotes = '\n'.join([n.text for n in notes])
+            data.append(footnotes)
+
+        return '\n\n'.join(data)
 
 
 class ConferenceReport:
@@ -184,6 +269,10 @@ def main(args):
     Main entry point of the app
     """
     logger.info(args)
+    eng_conference = Conference(args.year, args.month, args.languages[0])
+    eng_conference.talks = eng_conference.download_talks()
+    logger.info(len(eng_conference.talks))
+    logger.info(eng_conference.talks[-1].full_text)
     
 
 if __name__ == "__main__":
