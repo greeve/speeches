@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Download Apostle General Conference talks and create a conference report
+Download the Apostles' General Conference talks and create a conference report
 """
 
 __author__ = "Greg Reeve"
