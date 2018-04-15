@@ -36,6 +36,8 @@ APOSTLES = [
     'Ronald A. Rasband',
     'Russell M. Nelson',
     'Thomas S. Monson',
+    'Gerrit W. Gong',
+    'Ulisses Soares',
 ]
 
 SESSIONS = {

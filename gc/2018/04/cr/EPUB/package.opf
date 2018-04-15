@@ -3,7 +3,7 @@
 xmlns:dcterms="http://purl.org/dc/terms/" version="3.0" xml:lang="en"
 unique-identifier="bookid">
 <metadata>
-    <dc:identifier id="bookid">urn:uuid:b2665cac-91f5-4554-b0a9-fff60c123c4a</dc:identifier>
+    <dc:identifier id="bookid">urn:uuid:3199d66d-9737-4e93-b2c2-b092c493c81c</dc:identifier>
     <dc:title id="pub-title">April 2018 Conference Report</dc:title>
     <dc:language id="pub-language">en</dc:language>
     <dc:date>2018-04-15</dc:date> <!-- yyyy-mm-dd -->
@@ -32,6 +32,8 @@ unique-identifier="bookid">
     <item href="xhtml/eng/gc_2018_04_sun_am_5_eyring.xhtml" id="eng-sun-am-eyring.text" media-type="application/xhtml+xml"/>
     <item href="xhtml/eng/gc_2018_04_sun_am_6_oaks.xhtml" id="eng-sun-am-oaks.text" media-type="application/xhtml+xml"/>
     <item href="xhtml/eng/gc_2018_04_sun_am_7_nelson.xhtml" id="eng-sun-am-nelson.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/eng/gc_2018_04_sun_pm_1_gong.xhtml" id="eng-sun-pm-gong.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/eng/gc_2018_04_sun_pm_2_soares.xhtml" id="eng-sun-pm-soares.text" media-type="application/xhtml+xml"/>
     <item href="xhtml/eng/gc_2018_04_sun_pm_3_nelson.xhtml" id="eng-sun-pm-nelson.text" media-type="application/xhtml+xml"/>
     <item href="xhtml/eng/gc_2018_04_sun_pm_4_holland.xhtml" id="eng-sun-pm-holland.text" media-type="application/xhtml+xml"/>
     <item href="xhtml/eng/gc_2018_04_sun_pm_6_uchtdorf.xhtml" id="eng-sun-pm-uchtdorf.text" media-type="application/xhtml+xml"/>
@@ -53,6 +55,8 @@ unique-identifier="bookid">
     <item href="xhtml/hun/gc_2018_04_sun_am_5_eyring.xhtml" id="hun-sun-am-eyring.text" media-type="application/xhtml+xml"/>
     <item href="xhtml/hun/gc_2018_04_sun_am_6_oaks.xhtml" id="hun-sun-am-oaks.text" media-type="application/xhtml+xml"/>
     <item href="xhtml/hun/gc_2018_04_sun_am_7_nelson.xhtml" id="hun-sun-am-nelson.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/hun/gc_2018_04_sun_pm_1_gong.xhtml" id="hun-sun-pm-gong.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/hun/gc_2018_04_sun_pm_2_soares.xhtml" id="hun-sun-pm-soares.text" media-type="application/xhtml+xml"/>
     <item href="xhtml/hun/gc_2018_04_sun_pm_3_nelson.xhtml" id="hun-sun-pm-nelson.text" media-type="application/xhtml+xml"/>
     <item href="xhtml/hun/gc_2018_04_sun_pm_4_holland.xhtml" id="hun-sun-pm-holland.text" media-type="application/xhtml+xml"/>
     <item href="xhtml/hun/gc_2018_04_sun_pm_6_uchtdorf.xhtml" id="hun-sun-pm-uchtdorf.text" media-type="application/xhtml+xml"/>
@@ -78,6 +82,8 @@ unique-identifier="bookid">
     <itemref idref="eng-sun-am-eyring.text" />
     <itemref idref="eng-sun-am-oaks.text" />
     <itemref idref="eng-sun-am-nelson.text" />
+    <itemref idref="eng-sun-pm-gong.text" />
+    <itemref idref="eng-sun-pm-soares.text" />
     <itemref idref="eng-sun-pm-nelson.text" />
     <itemref idref="eng-sun-pm-holland.text" />
     <itemref idref="eng-sun-pm-uchtdorf.text" />
@@ -99,6 +105,8 @@ unique-identifier="bookid">
     <itemref idref="hun-sun-am-eyring.text" />
     <itemref idref="hun-sun-am-oaks.text" />
     <itemref idref="hun-sun-am-nelson.text" />
+    <itemref idref="hun-sun-pm-gong.text" />
+    <itemref idref="hun-sun-pm-soares.text" />
     <itemref idref="hun-sun-pm-nelson.text" />
     <itemref idref="hun-sun-pm-holland.text" />
     <itemref idref="hun-sun-pm-uchtdorf.text" />
