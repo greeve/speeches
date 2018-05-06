@@ -63,6 +63,11 @@ IGNORE_SECTIONS = [
 
 IGNORE_TITLES = [
     'The Sustaining of Church Officers',
+    'Solemn Assembly',
+    'Church Auditing Department Report, 2017',
+    'Ünnepélyes gyülekezet',
+    'Az egyházi tisztségviselők támogatása',
+    'Az Egyházi Könyvvizsgálói Osztály 2017. évi jelentése',
 ]
 
 FILEPATH = '{year}/{month}/{lang}/gc_{year}_{month}_{session}_{order}_{name}.text'  # noqa
