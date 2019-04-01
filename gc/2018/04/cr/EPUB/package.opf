@@ -3,11 +3,11 @@
 xmlns:dcterms="http://purl.org/dc/terms/" version="3.0" xml:lang="en"
 unique-identifier="bookid">
 <metadata>
-    <dc:identifier id="bookid">urn:uuid:c8746a2a-6f56-4778-b59e-b771c84ff727</dc:identifier>
+    <dc:identifier id="bookid">urn:uuid:ce68b409-84b6-4b3f-9e0e-438f317b3782</dc:identifier>
     <dc:title id="pub-title">April 2018 Conference Report</dc:title>
     <dc:language id="pub-language">en</dc:language>
-    <dc:date>2018-05-06</dc:date> <!-- yyyy-mm-dd -->
-    <meta property="dcterms:modified">2018-05-06T15:30:00Z</meta>
+    <dc:date>2018-05-23</dc:date> <!-- yyyy-mm-dd -->
+    <meta property="dcterms:modified">2018-05-23T15:30:00Z</meta>
     <dc:creator id="pub-creator12">Greg Reeve</dc:creator>
     <dc:contributor>The Church of Jesus Christ of Latter-day Saints</dc:contributor>
     <dc:publisher>The Church of Jesus Christ of Latter-day Saints</dc:publisher>
