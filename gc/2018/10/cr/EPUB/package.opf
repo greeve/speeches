@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<package xmlns="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:dcterms="http://purl.org/dc/terms/" version="3.0" xml:lang="en"
+unique-identifier="bookid">
+<metadata>
+    <dc:identifier id="bookid">urn:uuid:f5bafb73-b413-418d-8594-0d3e0cb25147</dc:identifier>
+    <dc:title id="pub-title">October 2018 Conference Report</dc:title>
+    <dc:language id="pub-language">en</dc:language>
+    <dc:date>2019-03-31</dc:date> <!-- yyyy-mm-dd -->
+    <meta property="dcterms:modified">2019-03-31T15:30:00Z</meta>
+    <dc:creator id="pub-creator12">Greg Reeve</dc:creator>
+    <dc:contributor>The Church of Jesus Christ of Latter-day Saints</dc:contributor>
+    <dc:publisher>The Church of Jesus Christ of Latter-day Saints</dc:publisher>
+    <dc:rights>Copyright © 2018 The Church of Jesus Christ of Latter-day Saints</dc:rights>
+</metadata>
+<manifest>
+    <item href="xhtml/title.xhtml" id="title" media-type="application/xhtml+xml"/>
+    <item href="xhtml/nav.xhtml" id="nav" media-type="application/xhtml+xml" properties="nav"/>
+    
+    <item href="xhtml/eng.xhtml" id="eng" media-type="application/xhtml+xml" />
+    <item href="xhtml/eng/gc_2018_10_sat_am_1_nelson.xhtml" id="eng-sat-am-nelson.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/eng/gc_2018_10_sat_am_2_cook.xhtml" id="eng-sat-am-cook.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/eng/gc_2018_10_sat_am_5_rasband.xhtml" id="eng-sat-am-rasband.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/eng/gc_2018_10_sat_am_6_bednar.xhtml" id="eng-sat-am-bednar.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/eng/gc_2018_10_sat_am_7_oaks.xhtml" id="eng-sat-am-oaks.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/eng/gc_2018_10_sat_pm_2_christofferson.xhtml" id="eng-sat-pm-christofferson.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/eng/gc_2018_10_sat_pm_4_soares.xhtml" id="eng-sat-pm-soares.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/eng/gc_2018_10_sat_pm_5_gong.xhtml" id="eng-sat-pm-gong.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/eng/gc_2018_10_sat_pm_7_uchtdorf.xhtml" id="eng-sat-pm-uchtdorf.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/eng/gc_2018_10_sun_am_1_ballard.xhtml" id="eng-sun-am-ballard.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/eng/gc_2018_10_sun_am_3_holland.xhtml" id="eng-sun-am-holland.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/eng/gc_2018_10_sun_am_6_nelson.xhtml" id="eng-sun-am-nelson.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/eng/gc_2018_10_sun_pm_1_eyring.xhtml" id="eng-sun-pm-eyring.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/eng/gc_2018_10_sun_pm_5_renlund.xhtml" id="eng-sun-pm-renlund.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/eng/gc_2018_10_sun_pm_7_stevenson.xhtml" id="eng-sun-pm-stevenson.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/eng/gc_2018_10_sun_pm_8_nelson.xhtml" id="eng-sun-pm-nelson.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/hun.xhtml" id="hun" media-type="application/xhtml+xml" />
+    <item href="xhtml/hun/gc_2018_10_sat_am_1_nelson.xhtml" id="hun-sat-am-nelson.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/hun/gc_2018_10_sat_am_2_cook.xhtml" id="hun-sat-am-cook.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/hun/gc_2018_10_sat_am_5_rasband.xhtml" id="hun-sat-am-rasband.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/hun/gc_2018_10_sat_am_6_bednar.xhtml" id="hun-sat-am-bednar.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/hun/gc_2018_10_sat_am_7_oaks.xhtml" id="hun-sat-am-oaks.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/hun/gc_2018_10_sat_pm_2_christofferson.xhtml" id="hun-sat-pm-christofferson.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/hun/gc_2018_10_sat_pm_4_soares.xhtml" id="hun-sat-pm-soares.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/hun/gc_2018_10_sat_pm_5_gong.xhtml" id="hun-sat-pm-gong.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/hun/gc_2018_10_sat_pm_7_uchtdorf.xhtml" id="hun-sat-pm-uchtdorf.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/hun/gc_2018_10_sun_am_1_ballard.xhtml" id="hun-sun-am-ballard.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/hun/gc_2018_10_sun_am_3_holland.xhtml" id="hun-sun-am-holland.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/hun/gc_2018_10_sun_am_6_nelson.xhtml" id="hun-sun-am-nelson.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/hun/gc_2018_10_sun_pm_1_eyring.xhtml" id="hun-sun-pm-eyring.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/hun/gc_2018_10_sun_pm_5_renlund.xhtml" id="hun-sun-pm-renlund.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/hun/gc_2018_10_sun_pm_7_stevenson.xhtml" id="hun-sun-pm-stevenson.text" media-type="application/xhtml+xml"/>
+    <item href="xhtml/hun/gc_2018_10_sun_pm_8_nelson.xhtml" id="hun-sun-pm-nelson.text" media-type="application/xhtml+xml"/>
+</manifest>
+<spine>
+    <itemref idref="title"/>
+    <itemref idref="nav" linear="no"/>
+    
+    <itemref idref="eng" />
+    <itemref idref="eng-sat-am-nelson.text" />
+    <itemref idref="eng-sat-am-cook.text" />
+    <itemref idref="eng-sat-am-rasband.text" />
+    <itemref idref="eng-sat-am-bednar.text" />
+    <itemref idref="eng-sat-am-oaks.text" />
+    <itemref idref="eng-sat-pm-christofferson.text" />
+    <itemref idref="eng-sat-pm-soares.text" />
+    <itemref idref="eng-sat-pm-gong.text" />
+    <itemref idref="eng-sat-pm-uchtdorf.text" />
+    <itemref idref="eng-sun-am-ballard.text" />
+    <itemref idref="eng-sun-am-holland.text" />
+    <itemref idref="eng-sun-am-nelson.text" />
+    <itemref idref="eng-sun-pm-eyring.text" />
+    <itemref idref="eng-sun-pm-renlund.text" />
+    <itemref idref="eng-sun-pm-stevenson.text" />
+    <itemref idref="eng-sun-pm-nelson.text" />
+    <itemref idref="hun" />
+    <itemref idref="hun-sat-am-nelson.text" />
+    <itemref idref="hun-sat-am-cook.text" />
+    <itemref idref="hun-sat-am-rasband.text" />
+    <itemref idref="hun-sat-am-bednar.text" />
+    <itemref idref="hun-sat-am-oaks.text" />
+    <itemref idref="hun-sat-pm-christofferson.text" />
+    <itemref idref="hun-sat-pm-soares.text" />
+    <itemref idref="hun-sat-pm-gong.text" />
+    <itemref idref="hun-sat-pm-uchtdorf.text" />
+    <itemref idref="hun-sun-am-ballard.text" />
+    <itemref idref="hun-sun-am-holland.text" />
+    <itemref idref="hun-sun-am-nelson.text" />
+    <itemref idref="hun-sun-pm-eyring.text" />
+    <itemref idref="hun-sun-pm-renlund.text" />
+    <itemref idref="hun-sun-pm-stevenson.text" />
+    <itemref idref="hun-sun-pm-nelson.text" />
+</spine>
+</package>

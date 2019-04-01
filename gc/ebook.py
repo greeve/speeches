@@ -46,24 +46,24 @@ MONTHS = {
 
 def generate_files(year, month, languages, talks):
     ensure_path_exists(CR_PATH.format(year=year, month=month))
-    
+
     # create the mimetype file
     mimetype_path = MIMETYPE_PATH.format(year=year, month=month)
     with open(mimetype_path, 'w', encoding='utf8') as fout:
         fout.write(templates.MIMETYPE)
-    
+
     # create the META-INF/container.xml file
     container_path = CONTAINER_PATH.format(year=year, month=month)
     ensure_path_exists(container_path)
     with open(container_path, 'w', encoding='utf8') as fout:
         fout.write(templates.CONTAINER)
-    
-    # create package.opf    
+
+    # create package.opf
     ebook_uuid = uuid.uuid4()
     today = date.today()
     items = []
     refs = []
-    
+
     for lang in languages:
         lang_part = templates.PACKAGE_ITEM_LANG_PART.format(lang=lang)
         items.append(lang_part)
@@ -74,24 +74,24 @@ def generate_files(year, month, languages, talks):
             filename, _ = os.path.splitext(filepath)
             talk_parts = talk_path.split('_')
             fileid = '{}-{}-{}-{}'.format(
-                lang, 
-                talk_parts[3], 
-                talk_parts[4], 
+                lang,
+                talk_parts[3],
+                talk_parts[4],
                 talk_parts[6],
             )
             item = templates.PACKAGE_ITEM_LANG.format(
-                lang=lang, 
-                filename=filename + '.xhtml', 
+                lang=lang,
+                filename=filename + '.xhtml',
                 fileid=fileid,
             )
             items.append(item)
             refs.append(templates.PACKAGE_REF_LANG.format(fileid=fileid))
-    
+
     package = templates.PACKAGE.format(
-        year=year, 
-        month=MONTHS[month], 
-        uuid=ebook_uuid, 
-        date=today, 
+        year=year,
+        month=MONTHS[month],
+        uuid=ebook_uuid,
+        date=today,
         items=''.join(items),
         refs=''.join(refs),
     )
@@ -111,33 +111,33 @@ def generate_files(year, month, languages, talks):
             filepath = talk_path.split('/')[-1]
             filename, _ = os.path.splitext(filepath)
             nav_talk_item = templates.NAV_TALK.format(
-                lang=lang, 
-                filename=filename + '.xhtml', 
-                author=author, 
+                lang=lang,
+                filename=filename + '.xhtml',
+                author=author,
                 title=title,
             )
             nav_talk_items.append(nav_talk_item)
         lang_name_full = LANGS_FULL[lang]
         nav_langs.append(templates.NAV_LANG.format(lang=lang, language=lang_name_full, talks=''.join(nav_talk_items)))
     nav_data = templates.NAV.format(
-        month=MONTHS[month], 
-        year=year, 
+        month=MONTHS[month],
+        year=year,
         contents=''.join(nav_langs),
     )
     with open(nav_path, 'w', encoding='utf8') as fout:
         fout.write(nav_data)
-    
+
     # create title.xhtml
     title_path = TITLE_PATH.format(year=year, month=month)
     ensure_path_exists(title_path)
     with open(title_path, 'w', encoding='utf8') as fout:
         fout.write(templates.TITLE.format(year=year, month=MONTHS[month]))
-    
+
     # create language part files
     for lang in languages:
         lang_part_path = LANG_PATH.format(
-            year=year, 
-            month=month, 
+            year=year,
+            month=month,
             lang=lang,
         )
         ensure_path_exists(lang_part_path)
@@ -146,7 +146,7 @@ def generate_files(year, month, languages, talks):
         lang_name_full = LANGS_FULL[lang]
         with open(lang_part_path, 'w', encoding='utf8') as fout:
             fout.write(templates.LANG_PART.format(language=lang_name_full))
-    
+
     # create talks
     for lang in languages:
         nav_talk_items = []
@@ -156,14 +156,14 @@ def generate_files(year, month, languages, talks):
             filename, _ = os.path.splitext(filepath)
             source_text = get_file_text(talk_path)
             body = markdown.markdown(
-                source_text, output_format='xhtml', 
+                source_text, output_format='xhtml',
                 extensions=['markdown.extensions.footnotes'],
             )
             new_file_text = templates.TALK.format(title=title, body=body)
             new_file_path = TALK_PATH.format(
-                year=year, 
-                month=month, 
-                lang=lang, 
+                year=year,
+                month=month,
+                lang=lang,
                 filename=filename + '.xhtml',
             )
             with open(new_file_path, 'w', encoding='utf8') as fout:

@@ -29,7 +29,7 @@ def main(args):
         talks.extend(paths)
     ebook.generate_files(args.year, args.month, args.languages, talks)
     ebook.create(args.year, args.month)
-    
+
 
 if __name__ == "__main__":
     """

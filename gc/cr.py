@@ -18,19 +18,19 @@ logger = setup_logger(logfile=None)
 
 
 class Conference:
-    
+
     GC_ROOT = 'https://www.lds.org/general-conference'
     GC_PATH = '/{year}/{month}'
     GC_URL = GC_ROOT + GC_PATH
     TALK_URL = GC_URL + '/{slug}'
-    
+
     LANGUAGES = {
         'eng': 'English',
         'hun': 'Hungarian',
     }
-    
+
     TITLE = '{language} Conference Addresses'
-    
+
     SESSIONS = {
         'Saturday Morning Session': 'sat-am',
         'Saturday Afternoon Session': 'sat-pm',
@@ -43,7 +43,7 @@ class Conference:
         'Vasárnap délelőtti ülés': 'sun-am',
         'Vasárnap délutáni ülés': 'sun-pm',
     }
-    
+
     APOSTLES = [
         'D. Todd Christofferson',
         'Dale G. Renlund',
@@ -60,7 +60,7 @@ class Conference:
         'Russell M. Nelson',
         'Thomas S. Monson',
     ]
-    
+
     IGNORE_SECTIONS = [
         "Conference Music",
         "Additional Resources",
@@ -68,13 +68,13 @@ class Conference:
         "General Women's Session",
         "Általános női ülés",
     ]
-    
+
     IGNORE_TITLES = [
         'The Sustaining of Church Officers',
     ]
-    
+
     FILEPATH = '{year}/{month}/{lang}/gc_{year}_{month}_{session_abrv}_{order}_{last_name}.text'  # noqa
-    
+
     def __init__(self, year, month, lang):
         self.year = year
         self.month = month
@@ -82,19 +82,19 @@ class Conference:
         self.language = self.LANGUAGES[lang]
         self.talks = []
         self.title = self.TITLE.format(language=self.language)
-    
+
     def download_talks(self):
         url = self.GC_URL.format(year=self.year, month=self.month)
         params = {'lang': self.lang}
         r = requests.get(url, params=params)
         talks = self.parse_response(r)
         return talks
-    
+
     def parse_response(self, response):
         soup = BeautifulSoup(response.content, 'html.parser')
         sections = soup.find_all('div', class_='section')
         return list(self._parse_sections(sections))
-    
+
     def _parse_sections(self, sections):
         for section in sections:
             section_title = section.find_all(
@@ -131,12 +131,12 @@ class Conference:
                                 slug=slug,
                                 lang=self.lang,
                             )
-                                                
-                            yield Talk.from_url( 
+
+                            yield Talk.from_url(
                                 url,
                                 self.lang,
                                 author=author,
-                                title=title, 
+                                title=title,
                                 slug=slug,
                                 session=session,
                                 order=order,
@@ -158,7 +158,7 @@ class Talk:
         'Vasárnap délelőtti ülés': 'sun-am',
         'Vasárnap délutáni ülés': 'sun-pm',
     }
-    
+
     def __init__(self, author, title, slug, session, order, filepath, full_text):
         self.author = author
         self.title = title
@@ -168,7 +168,7 @@ class Talk:
         self.order = order
         self.filepath = filepath
         self.full_text = full_text
-        
+
     @classmethod
     def from_url(cls, url, lang,  **kwargs):
         author = kwargs.get('author')
@@ -180,7 +180,7 @@ class Talk:
 
         talk = cls(
             author,
-            title, 
+            title,
             slug,
             session,
             order,
@@ -242,24 +242,24 @@ class Talk:
 
 
 class ConferenceReport:
-    
+
     MONTHS = {
         '04': 'April',
         '10': 'October',
     }
-    
+
     TITLE = '{month} {year} Conference Report'
-    
+
     def __init__(self, year, month, conferences):
         self.year = year
         self.month = month
         self.month_name = self.MONTHS[month]
         self.conferences = conferences
         self.title = self.TITLE.format(
-            month=self.MONTHS[month], 
+            month=self.MONTHS[month],
             year=year,
         )
-        
+
     def create_epub(self):
         return
 
@@ -273,7 +273,7 @@ def main(args):
     eng_conference.talks = eng_conference.download_talks()
     logger.info(len(eng_conference.talks))
     logger.info(eng_conference.talks[-1].full_text)
-    
+
 
 if __name__ == "__main__":
     """
