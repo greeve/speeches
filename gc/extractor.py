@@ -51,6 +51,7 @@ SESSIONS = {
     'Általános papsági ülés': 'sat_ps',
     'Vasárnap délelőtti ülés': 'sun_am',
     'Vasárnap délutáni ülés': 'sun_pm',
+    'Papsági ülés': 'sat_ps',
 }
 
 IGNORE_SECTIONS = [
@@ -88,7 +89,8 @@ def get_slugs(year, month, lang):
         if section_title not in IGNORE_SECTIONS:
             speakers = section.find_all('div', class_='lumen-tile__content')
             for index, speaker in enumerate(speakers):
-                if speaker.text in APOSTLES:
+                speaker_name = speaker.text.replace('\xa0', ' ')
+                if speaker_name in APOSTLES:
                     title = (
                         speaker.previous_sibling.previous_sibling.text.strip()
                     )
@@ -188,8 +190,8 @@ def main(args):
     """
     logger.info("hello world")
     logger.info(args)
-    slugs = get_slugs(args)
-    paths = write_talks(slugs, args)
+    slugs = get_slugs(args.year, args.month, args.lang)
+    paths = write_talks(slugs, args.year, args.month, args.lang)
     logger.info(paths)
 
 
