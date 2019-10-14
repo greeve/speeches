@@ -28,15 +28,16 @@ APOSTLES = [
     'David A. Bednar',
     'Dieter F. Uchtdorf',
     'Gary E. Stevenson',
+    'Gerrit W. Gong',
     'Henry B. Eyring',
     'Jeffrey R. Holland',
     'M. Russell Ballard',
+    'Neil L. Andersen',
     'Quentin L. Cook',
     'Robert D. Hales',
     'Ronald A. Rasband',
     'Russell M. Nelson',
     'Thomas S. Monson',
-    'Gerrit W. Gong',
     'Ulisses Soares',
 ]
 
@@ -60,15 +61,18 @@ IGNORE_SECTIONS = [
     "About General Conference",
     "General Women's Session",
     "Általános női ülés",
+    "Women’s Session",
 ]
 
 IGNORE_TITLES = [
     'The Sustaining of Church Officers',
+    'Sustaining of General Authorities, Area Seventies, and General Officers of the Church',  # noqa
     'Solemn Assembly',
     'Church Auditing Department Report, 2017',
     'Ünnepélyes gyülekezet',
     'Az egyházi tisztségviselők támogatása',
     'Az Egyházi Könyvvizsgálói Osztály 2017. évi jelentése',
+    'Az egyház általános felhatalmazottainak, területi hetveneseinek és általános tisztségviselőinek támogatása',
 ]
 
 FILEPATH = '{year}/{month}/{lang}/gc_{year}_{month}_{session}_{order}_{name}.text'  # noqa
@@ -129,18 +133,15 @@ def write_talks(slugs, year, month, lang):
         ))
         soup = BeautifulSoup(r.content, 'html.parser')
         section = soup.find_all(
-            'section',
-            class_='article-page lumen-template-read',
+            'article',
+            class_='global-template-mobile_article',
         )[0]
 
         # title
-        title = section.find_all('h1', class_='title')[0].text
+        title = section.find(id='title1').text
 
         # author
-        if lang == 'eng':
-            author = section.find_all('a', class_='article-author__name')[0].text.replace('By ', '')  # noqa
-        else:
-            author = section.find_all('div', class_='article-author')[0].text.split('\n')[1:][0].strip()  # noqa
+        author = section.find(id='author1').text.replace('By ', '')
 
         data.append('# {} <br />{}'.format(author, title))
         paths.append((filename, author, title, lang))
@@ -162,12 +163,19 @@ def write_talks(slugs, year, month, lang):
         data.append(speech)
 
         # references
-        references = section.find(id='toggledReferences')
+        try:
+            references = section.find_all('footer', class_='notes')[0]
+        except:
+            logger.info((slug, year, month, lang))
 
         if references:
             notes = references.find_all('li')
             for n in notes:
-                note = n.find_all('p')[0]
+                try:
+                    note = n.find_all('p')[0]
+                except:
+                    logger.info((slug, year, month, lang))
+                    logger.info(n)
                 n.string = '[^{}]: {}'.format(n['data-marker'].replace('.', ''), note.text)  # noqa
             footnotes = '\n'.join([n.text for n in notes])
             data.append(footnotes)
