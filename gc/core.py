@@ -2,6 +2,8 @@
 
 """
 Download Conference Addresses for the apostles from lds.org
+
+python core.py YYYY MM
 """
 
 __author__ = "Greg Reeve"
