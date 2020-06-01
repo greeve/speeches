@@ -44,6 +44,7 @@ APOSTLES = [
 SESSIONS = {
     'Saturday Morning Session': 'sat_am',
     'Saturday Afternoon Session': 'sat_pm',
+    'Saturday Evening Session': 'sat_ev',
     'General Priesthood Session': 'sat_ps',
     'Sunday Morning Session': 'sun_am',
     'Sunday Afternoon Session': 'sun_pm',
@@ -163,10 +164,12 @@ def write_talks(slugs, year, month, lang):
         data.append(speech)
 
         # references
+        # TODO fix references for new html design on lds.org
         try:
             references = section.find_all('footer', class_='notes')[0]
         except:
             logger.info((slug, year, month, lang))
+            references = None
 
         if references:
             notes = references.find_all('li')
