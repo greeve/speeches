@@ -19,7 +19,7 @@ logger = setup_logger(logfile=None)
 
 class Conference:
 
-    GC_ROOT = 'https://www.lds.org/general-conference'
+    GC_ROOT = 'https://www.churchofjesuschrist.org/general-conference'
     GC_PATH = '/{year}/{month}'
     GC_URL = GC_ROOT + GC_PATH
     TALK_URL = GC_URL + '/{slug}'

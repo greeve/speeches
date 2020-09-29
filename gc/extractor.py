@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Download Conference Addresses for the apostles from lds.org
+Download Conference Addresses for the apostles from churchofjesuschrist.org
 """
 
 __author__ = "Greg Reeve"
@@ -18,8 +18,8 @@ from logger import setup_logger
 logger = setup_logger(logfile=None)
 
 
-TOC_URL = 'https://www.lds.org/general-conference/{year}/{month}?lang={lang}'
-TALK_URL = 'https://www.lds.org/general-conference/{year}/{month}/{slug}?lang={lang}'  # noqa
+TOC_URL = 'https://www.churchofjesuschrist.org/general-conference/{year}/{month}?lang={lang}'
+TALK_URL = 'https://www.churchofjesuschrist.org/general-conference/{year}/{month}/{slug}?lang={lang}'  # noqa
 
 APOSTLES = [
     'D. Todd Christofferson',
@@ -68,12 +68,14 @@ IGNORE_SECTIONS = [
 IGNORE_TITLES = [
     'The Sustaining of Church Officers',
     'Sustaining of General Authorities, Area Seventies, and General Officers of the Church',  # noqa
+    'Sustaining of General Authorities, Area Seventies, and General Officers',
     'Solemn Assembly',
     'Church Auditing Department Report, 2017',
     'Ünnepélyes gyülekezet',
     'Az egyházi tisztségviselők támogatása',
     'Az Egyházi Könyvvizsgálói Osztály 2017. évi jelentése',
-    'Az egyház általános felhatalmazottainak, területi hetveneseinek és általános tisztségviselőinek támogatása',
+    'Az egyház általános felhatalmazottainak, területi hetveneseinek és általános tisztségviselőinek támogatása',  # noqa
+    'Az általános felhatalmazottak, területi hetvenesek és általános tisztségviselők támogatása',  # noqa
 ]
 
 FILEPATH = '{year}/{month}/{lang}/gc_{year}_{month}_{session}_{order}_{name}.text'  # noqa
@@ -164,7 +166,7 @@ def write_talks(slugs, year, month, lang):
         data.append(speech)
 
         # references
-        # TODO fix references for new html design on lds.org
+        # TODO fix references for new html design on churchofjesuschrist.org
         try:
             references = section.find_all('footer', class_='notes')[0]
         except:

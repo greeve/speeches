@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Download Conference Addresses for the apostles from lds.org
+Download Conference Addresses for the apostles from churchofjesuschrist.org
 
 python core.py YYYY MM
 """
