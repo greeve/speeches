@@ -78,7 +78,7 @@ IGNORE_TITLES = [
     'Az általános felhatalmazottak, területi hetvenesek és általános tisztségviselők támogatása',  # noqa
 ]
 
-FILEPATH = '{year}/{month}/{lang}/gc_{year}_{month}_{session}_{order}_{name}.text'  # noqa
+FILEPATH = '{year}/{month}/{lang}/cr_{year}_{month}_{session}_{order}_{name}.md'  # noqa
 
 
 def get_slugs(year, month, lang):
@@ -146,7 +146,10 @@ def write_talks(slugs, year, month, lang):
         # author
         author = section.find(id='author1').text.replace('By ', '')
 
-        data.append('# {} <br />{}'.format(author, title))
+        data.append('# {}'.format(title))
+        data.append('## {}'.format(author))
+
+        # data.append('# {} <br />{}'.format(author, title))
         paths.append((filename, author, title, lang))
 
         # address content
@@ -169,7 +172,7 @@ def write_talks(slugs, year, month, lang):
         # TODO fix references for new html design on churchofjesuschrist.org
         try:
             references = section.find_all('footer', class_='notes')[0]
-        except:
+        except Exception:
             logger.info((slug, year, month, lang))
             references = None
 
@@ -178,7 +181,7 @@ def write_talks(slugs, year, month, lang):
             for n in notes:
                 try:
                     note = n.find_all('p')[0]
-                except:
+                except Exception:
                     logger.info((slug, year, month, lang))
                     logger.info(n)
                 n.string = '[^{}]: {}'.format(n['data-marker'].replace('.', ''), note.text)  # noqa

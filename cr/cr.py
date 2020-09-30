@@ -19,10 +19,10 @@ logger = setup_logger(logfile=None)
 
 class Conference:
 
-    GC_ROOT = 'https://www.churchofjesuschrist.org/general-conference'
-    GC_PATH = '/{year}/{month}'
-    GC_URL = GC_ROOT + GC_PATH
-    TALK_URL = GC_URL + '/{slug}'
+    CR_ROOT = 'https://www.churchofjesuschrist.org/general-conference'
+    CR_PATH = '/{year}/{month}'
+    CR_URL = CR_ROOT + CR_PATH
+    TALK_URL = CR_URL + '/{slug}'
 
     LANGUAGES = {
         'eng': 'English',
@@ -84,7 +84,7 @@ class Conference:
         self.title = self.TITLE.format(language=self.language)
 
     def download_talks(self):
-        url = self.GC_URL.format(year=self.year, month=self.month)
+        url = self.CR_URL.format(year=self.year, month=self.month)
         params = {'lang': self.lang}
         r = requests.get(url, params=params)
         talks = self.parse_response(r)
