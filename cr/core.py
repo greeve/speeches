@@ -13,6 +13,7 @@ __license__ = "MIT"
 import argparse
 import extractor
 import converter
+import publisher
 
 from logger import setup_logger
 
@@ -37,6 +38,11 @@ def main(args):
     if args.action == 'convert':
         for lang in args.languages:
             converter.convert_talks(args.year, args.month, lang)
+
+    if args.action == 'publish':
+        publisher.make_title(args.year, args.month)
+        talks = publisher.gather_talks(args.year, args.month, args.languages)
+        publisher.create_epub_cmd(args.year, args.month, talks)
 
 
 if __name__ == "__main__":
