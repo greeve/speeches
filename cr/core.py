@@ -12,7 +12,7 @@ __license__ = "MIT"
 
 import argparse
 import extractor
-import ebook
+import converter
 
 from logger import setup_logger
 
@@ -24,13 +24,19 @@ def main(args):
     Main entry point of the app
     """
     logger.info(args)
-    talks = []
-    for lang in args.languages:
-        slugs = extractor.get_slugs(args.year, args.month, lang)
-        paths = extractor.write_talks(slugs, args.year, args.month, lang)
-        talks.extend(paths)
-    ebook.generate_files(args.year, args.month, args.languages, talks)
-    ebook.create(args.year, args.month)
+    if args.action == 'download':
+        for lang in args.languages:
+            slugs = extractor.get_slugs(args.year, args.month, lang)
+            paths = extractor.download_talks(
+                slugs,
+                args.year,
+                args.month,
+                lang,
+            )
+
+    if args.action == 'convert':
+        for lang in args.languages:
+            converter.convert_talks(args.year, args.month, lang)
 
 
 if __name__ == "__main__":
@@ -40,6 +46,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     # Required positional argument
+    parser.add_argument("action", help="The action to perform.")
     parser.add_argument("year", help="The year of the conference (e.g. 2017).")
     parser.add_argument(
         "month",

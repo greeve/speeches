@@ -10,6 +10,7 @@ __license__ = "MIT"
 
 import argparse
 import os
+import re
 import requests
 
 from bs4 import BeautifulSoup
@@ -18,7 +19,7 @@ from logger import setup_logger
 logger = setup_logger(logfile=None)
 
 
-TOC_URL = 'https://www.churchofjesuschrist.org/general-conference/{year}/{month}?lang={lang}'
+TOC_URL = 'https://www.churchofjesuschrist.org/general-conference/{year}/{month}?lang={lang}'  # noqa
 TALK_URL = 'https://www.churchofjesuschrist.org/general-conference/{year}/{month}/{slug}?lang={lang}'  # noqa
 
 APOSTLES = [
@@ -78,7 +79,8 @@ IGNORE_TITLES = [
     'Az általános felhatalmazottak, területi hetvenesek és általános tisztségviselők támogatása',  # noqa
 ]
 
-FILEPATH = '{year}/{month}/{lang}/cr_{year}_{month}_{session}_{order}_{name}.md'  # noqa
+FOLDER_HTML = '{year}/{month}/{lang}/html/'
+FILEPATH_HTML = FOLDER_HTML + '{slug}.html'
 
 
 def get_slugs(year, month, lang):
@@ -113,83 +115,35 @@ def get_slugs(year, month, lang):
     return data
 
 
-def write_talks(slugs, year, month, lang):
+def download_talks(slugs, year, month, lang):
+    """
+    """
     paths = []
     for slug_infos in slugs:
         session, order, last_name, slug = slug_infos
-        filename = FILEPATH.format(
-            year=year,
-            month=month,
-            session=session,
-            order=order,
-            name=last_name,
-            lang=lang,
-        )
-        ensure_path_exists(filename)
-        data = []
 
-        r = requests.get(TALK_URL.format(
-            year=year,
+        filename = FILEPATH_HTML.format(
+            lang=lang,
             month=month,
             slug=slug,
+            year=year,
+        )
+
+        ensure_path_exists(filename)
+        paths.append(filename)
+
+        r = requests.get(TALK_URL.format(
             lang=lang,
+            month=month,
+            slug=slug,
+            year=year,
         ))
+
         soup = BeautifulSoup(r.content, 'html.parser')
-        section = soup.find_all(
-            'article',
-            class_='global-template-mobile_article',
-        )[0]
 
-        # title
-        title = section.find(id='title1').text
-
-        # author
-        author = section.find(id='author1').text.replace('By ', '')
-
-        data.append('# {}'.format(title))
-        data.append('## {}'.format(author))
-
-        # data.append('# {} <br />{}'.format(author, title))
-        paths.append((filename, author, title, lang))
-
-        # address content
-        address = section.find_all('div', class_='body-block')[0]
-
-        # speech paragraphs
-        paragraphs = address.find_all('p')
-
-        # modify footnotes in each paragraph
-        for p in paragraphs:
-            footnotes = p.find_all('sup', class_='marker')
-            if footnotes:
-                for f in footnotes:
-                    f.string.replace_with('[^{}]'.format(f.string))
-
-        speech = '\n\n'.join([p.text for p in address.find_all('p')])
-        data.append(speech)
-
-        # references
-        # TODO fix references for new html design on churchofjesuschrist.org
-        try:
-            references = section.find_all('footer', class_='notes')[0]
-        except Exception:
-            logger.info((slug, year, month, lang))
-            references = None
-
-        if references:
-            notes = references.find_all('li')
-            for n in notes:
-                try:
-                    note = n.find_all('p')[0]
-                except Exception:
-                    logger.info((slug, year, month, lang))
-                    logger.info(n)
-                n.string = '[^{}]: {}'.format(n['data-marker'].replace('.', ''), note.text)  # noqa
-            footnotes = '\n'.join([n.text for n in notes])
-            data.append(footnotes)
-
+        logger.info(filename)
         with open(filename, 'w', encoding='utf-8') as fout:
-            fout.write('\n\n'.join(data))
+            fout.write(str(soup))
 
     return paths
 
@@ -207,8 +161,7 @@ def main(args):
     logger.info("hello world")
     logger.info(args)
     slugs = get_slugs(args.year, args.month, args.lang)
-    paths = write_talks(slugs, args.year, args.month, args.lang)
-    logger.info(paths)
+    paths = download_talks(slugs, args.year, args.month, args.lang)
 
 
 if __name__ == "__main__":
