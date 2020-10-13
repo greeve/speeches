@@ -42,26 +42,12 @@ APOSTLES = [
     'Ulisses Soares',
 ]
 
-SESSIONS = {
-    'Saturday Morning Session': 'sat_am',
-    'Saturday Afternoon Session': 'sat_pm',
-    'Saturday Evening Session': 'sat_ev',
-    'General Priesthood Session': 'sat_ps',
-    'Sunday Morning Session': 'sun_am',
-    'Sunday Afternoon Session': 'sun_pm',
-    'Szombat délelőtti ülés': 'sat_am',
-    'Szombat délutáni ülés': 'sat_pm',
-    'Általános papsági ülés': 'sat_ps',
-    'Vasárnap délelőtti ülés': 'sun_am',
-    'Vasárnap délutáni ülés': 'sun_pm',
-    'Papsági ülés': 'sat_ps',
-}
-
 IGNORE_SECTIONS = [
     "Conference Music",
     "Additional Resources",
     "About General Conference",
     "General Women's Session",
+    "General Women’s Session",
     "Általános női ülés",
     "Women’s Session",
 ]
@@ -107,7 +93,6 @@ def get_slugs(year, month, lang):
                         href = speaker.parent.parent['href']
                         slug = href.split('?')[:1][0].split('/')[-1]
                         data.append((
-                            SESSIONS[section_title],
                             index + 1,
                             speaker.text.split(' ')[-1].lower(),
                             slug,
@@ -120,7 +105,7 @@ def download_talks(slugs, year, month, lang):
     """
     paths = []
     for slug_infos in slugs:
-        session, order, last_name, slug = slug_infos
+        order, last_name, slug = slug_infos
 
         filename = FILEPATH_HTML.format(
             lang=lang,
