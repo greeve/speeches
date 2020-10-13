@@ -31,7 +31,7 @@ NOTES_REGEX = re.compile(NOTE_NUMBER, re.MULTILINE)
 NOTES_REGEX2 = re.compile(NOTE_NUMBER2, re.MULTILINE)
 SPACES_REGEX = re.compile(LINE_SPACES, re.MULTILINE)
 
-CONTENT_TEMPLATE = '{body}\n\n## References\n\n{notes}'
+CONTENT_TEMPLATE = '{body}\n\n{notes}'
 
 
 def convert_talks(year, month, lang):
@@ -48,6 +48,13 @@ def convert_talks(year, month, lang):
 
         soup = BeautifulSoup(data, 'html.parser')
 
+        # Remove tag line (i.e. kicker) that is an excerpt from the talk
+        try:
+            soup.find('p', id='kicker1').decompose()
+        except AttributeError:
+            # A kicker doesn't exist in this talk
+            pass
+
         section = soup.find_all(
             'article',
             class_='global-template-mobile_article',
@@ -55,7 +62,7 @@ def convert_talks(year, month, lang):
 
         panel = soup.find_all('div', class_='panelContent-2dg-k')[1]
 
-        body = md(str(section), heading_style='ATX')
+        body = md(str(section), heading_style='ATX', strip=['img'])
         body = re.sub(SPACES_REGEX, '', body)
         body = re.sub(NOTES_REGEX2, '[^\\1]', body)
 
