@@ -16,7 +16,7 @@ from logger import setup_logger
 logger = setup_logger(logfile=None)
 
 
-PANDOC_CMD = 'pandoc -o cr_{year}{month}.epub {title} {talks}'
+PANDOC_CMD = 'pandoc -o cr_{year}{month}.epub {title} {talks} --table-of-contents --shift-heading-level-by=1 --file-scope --toc-depth=2 --epub-chapter-level=2'
 MONTHS = {
     '04': 'April',
     '10': 'October',
