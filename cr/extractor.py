@@ -23,6 +23,7 @@ TOC_URL = 'https://www.churchofjesuschrist.org/general-conference/{year}/{month}
 TALK_URL = 'https://www.churchofjesuschrist.org/general-conference/{year}/{month}/{slug}?lang={lang}'  # noqa
 
 APOSTLES = [
+    'Boyd K. Packer',
     'D. Todd Christofferson',
     'Dale G. Renlund',
     'Dallin H. Oaks',
@@ -30,11 +31,16 @@ APOSTLES = [
     'Dieter F. Uchtdorf',
     'Gary E. Stevenson',
     'Gerrit W. Gong',
+    'Gordon B. Hinckley',
     'Henry B. Eyring',
+    'James E. Faust',
     'Jeffrey R. Holland',
+    'Joseph B. Wirthlin',
+    'L. Tom Perry',
     'M. Russell Ballard',
     'Neil L. Andersen',
     'Quentin L. Cook',
+    'Richard G. Scott',
     'Robert D. Hales',
     'Ronald A. Rasband',
     'Russell M. Nelson',
@@ -50,6 +56,7 @@ IGNORE_SECTIONS = [
     "General Women’s Session",
     "Általános női ülés",
     "Women’s Session",
+    "General Relief Society Meeting",
 ]
 
 IGNORE_TITLES = [
