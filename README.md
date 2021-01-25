@@ -14,3 +14,9 @@ Example commands to create an epub manually:
 
     zip -0Xq cr-2016-04.epub mimetype
     zip -Xr9Dq cr-2016-04.epub *
+
+## Conference Report Creation
+
+- `python core.py download YYYY MM`
+- `python core.py convert YYYY MM`
+- `python core.py publish YYYY MM`
