@@ -77,43 +77,41 @@ FILEPATH_HTML = FOLDER_HTML + '{slug}.html'
 
 
 def get_slugs(year, month, lang):
-    data = []
+    slugs = []
     r = requests.get(
         TOC_URL.format(year=year, month=month, lang=lang),
     )
     soup = BeautifulSoup(r.content, 'html.parser')
-    sections = soup.find_all('div', class_='section')
-    for section in sections:
-        section_title = section.find_all(
-            'span',
-            class_='section__header__title',
-        )[0].text
+    sub_items = soup.find('ul', class_=re.compile('^subItems-'))
+    for section in sub_items.contents:
+        section_title = section.p.text
         if section_title not in IGNORE_SECTIONS:
-            speakers = section.find_all('div', class_='lumen-tile__content')
-            for index, speaker in enumerate(speakers):
-                speaker_name = speaker.text.replace('\xa0', ' ')
+            for item in section.find_all('li'):
+                link = item.a['href']
+                slug = link.split('/')[-1].split('?')[0]
+                title, speaker_name = [x.text for x in item.find_all('p')]
+                if ' püspök' in speaker_name:
+                    speaker_name = speaker_name.replace(' püspök', '')
+                if ' elder' in speaker_name:
+                    speaker_name = speaker_name.replace(' elder', '')
+                if ' elnök' in speaker_name:
+                    speaker_name = speaker_name.replace(' elnök', '')
+                if 'Benyújtotta: ' in speaker_name:
+                    speaker_name = speaker_name.replace('Benyújtotta: ', '')
+                if '\xa0' in speaker_name:
+                    speaker_name = speaker_name.replace('\xa0', ' ')
+
                 if speaker_name in APOSTLES:
-                    title = (
-                        speaker.previous_sibling.previous_sibling.text.strip()
-                    )
-                    if title not in IGNORE_TITLES:
-                        href = speaker.parent.parent['href']
-                        slug = href.split('?')[:1][0].split('/')[-1]
-                        data.append((
-                            index + 1,
-                            speaker.text.split(' ')[-1].lower(),
-                            slug,
-                        ))
-    return data
+                    slugs.append(slug)
+
+    return slugs
 
 
 def download_talks(slugs, year, month, lang):
     """
     """
     paths = []
-    for slug_infos in slugs:
-        order, last_name, slug = slug_infos
-
+    for slug in slugs:
         filename = FILEPATH_HTML.format(
             lang=lang,
             month=month,
