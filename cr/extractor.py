@@ -90,19 +90,20 @@ def get_slugs(year, month, lang):
                 link = item.a['href']
                 slug = link.split('/')[-1].split('?')[0]
                 title, speaker_name = [x.text for x in item.find_all('p')]
-                if ' püspök' in speaker_name:
-                    speaker_name = speaker_name.replace(' püspök', '')
-                if ' elder' in speaker_name:
-                    speaker_name = speaker_name.replace(' elder', '')
-                if ' elnök' in speaker_name:
-                    speaker_name = speaker_name.replace(' elnök', '')
-                if 'Benyújtotta: ' in speaker_name:
-                    speaker_name = speaker_name.replace('Benyújtotta: ', '')
-                if '\xa0' in speaker_name:
-                    speaker_name = speaker_name.replace('\xa0', ' ')
+                if title not in IGNORE_TITLES:
+                    if ' püspök' in speaker_name:
+                        speaker_name = speaker_name.replace(' püspök', '')
+                    if ' elder' in speaker_name:
+                        speaker_name = speaker_name.replace(' elder', '')
+                    if ' elnök' in speaker_name:
+                        speaker_name = speaker_name.replace(' elnök', '')
+                    if 'Benyújtotta: ' in speaker_name:
+                        speaker_name = speaker_name.replace('Benyújtotta: ', '')
+                    if '\xa0' in speaker_name:
+                        speaker_name = speaker_name.replace('\xa0', ' ')
 
-                if speaker_name in APOSTLES:
-                    slugs.append(slug)
+                    if speaker_name in APOSTLES:
+                        slugs.append(slug)
 
     return slugs
 
